@@ -2,33 +2,21 @@ export default (app, db) => {
   /**
    * @swagger
    *
-   * /travels:
+   * /locations:
    *   get:
    *     produces:
    *       - application/json
    *     responses:
    *       200:
    */
-  app.get("/travels", (req, res) =>
-    db.travel.findAll({
-      attributes: { exclude: ['personId', 'departureLocation', 'arrivalLocation']},
-      include: [
-        db.person,
-        {
-          model: db.location,
-          as: 'Arrival'
-        }, {
-          model: db.location,
-          as: 'Departure'
-        }
-      ]
-    }).then((result) => res.json(result))
+  app.get("/locations", (req, res) =>
+    db.location.findAll().then((result) => res.json(result))
   );
 
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /location/{id}:
    *   get:
    *     produces:
    *       - application/json
@@ -40,14 +28,14 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.get("/travel/:id", (req, res) =>
-    db.travel.findByPk(req.params.id).then((result) => res.json(result))
+  app.get("/location/:id", (req, res) =>
+    db.location.findByPk(req.params.id).then((result) => res.json(result))
   );
 
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /location/{id}:
    *   post:
    *     produces:
    *       - application/json
@@ -59,8 +47,8 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.post("/travel", (req, res) =>
-    db.travel.create({
+  app.post("/location", (req, res) =>
+    db.location.create({
       title: req.body.title,
       content: req.body.content
     }).then((result) => res.json(result))
@@ -69,7 +57,7 @@ export default (app, db) => {
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /location/{id}:
    *   put:
    *     produces:
    *       - application/json
@@ -81,8 +69,8 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.put("/travel/:id", (req, res) =>
-    db.travel.update({
+  app.put("/location/:id", (req, res) =>
+    db.location.update({
       title: req.body.title,
       content: req.body.content
     },
@@ -96,7 +84,7 @@ export default (app, db) => {
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /location/{id}:
    *   delete:
    *     produces:
    *       - application/json
@@ -108,8 +96,8 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.delete("/travel/:id", (req, res) =>
-    db.travel.destroy({
+  app.delete("/location/:id", (req, res) =>
+    db.location.destroy({
       where: {
         id: req.params.id
       }

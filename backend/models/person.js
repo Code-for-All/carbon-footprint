@@ -1,14 +1,14 @@
-export default (sequelize, DataTypes) => {
+export default (sequelize, Sequelize) => {
   const Person = sequelize.define('person', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    Name: DataTypes.STRING
+    Name: Sequelize.STRING
   },
     {
-      freezeTableName: true,
+      freezeTableName: true
     }
   );
 
