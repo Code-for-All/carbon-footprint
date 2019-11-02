@@ -15,7 +15,7 @@ export default (sequelize, Sequelize) => {
     name: Sequelize.STRING,
     latitude: Sequelize.REAL,
     longitude: Sequelize.REAL,
-    type: Sequelize.ENUM('Address','Airport','Harbour','Train station','Bus station', 'Marina'),
+    type: Sequelize.ENUM('Address', 'Airport', 'Harbour', 'Train Station', 'Bus Station', 'Marina', 'Place', 'Venue'),
     nominatimId: Sequelize.BIGINT
   },
     {
