@@ -38,7 +38,8 @@ db.sequelize.sync().then(() => {
     [
       { oneway: true, departedAt: "2019-01-12", arrivedAt: "2019-01-22", transport: 'Boat', personId: 1, departureLocation: 3, arrivalLocation: 2 },
       { oneway: false, departedAt: "2019-01-02", arrivedAt: "2019-01-04", transport: 'Plane', personId: 1, departureLocation: 1, arrivalLocation: 4 },
-      { oneway: false, departedAt: "2019-10-31", arrivedAt: "2019-10-31", transport: 'Train', personId: 2, departureLocation: 5, arrivalLocation: 7 }
+      { oneway: false, departedAt: "2019-10-31", arrivedAt: "2019-10-31", transport: 'Train', personId: 2, departureLocation: 5, arrivalLocation: 7 },
+      { oneway: false, departedAt: "2019-10-31", arrivedAt: "2019-10-31", transport: 'Foot', personId: 2, departureLocation: 7, arrivalLocation: 6 }
     ]
   );
   /**
