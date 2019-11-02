@@ -5,7 +5,7 @@ export default (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true
     },
-    Name: Sequelize.STRING
+    name: Sequelize.STRING
   },
     {
       freezeTableName: true

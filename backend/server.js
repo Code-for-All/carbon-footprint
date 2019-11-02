@@ -18,23 +18,23 @@ apiLocation(app, db);
 db.sequelize.sync().then(() => {
   db.location.bulkCreate(
     [
-      {name: 'Melbourne Airport', nominatimId: 146327231, latitude: -37.667111, longitude: 144.833480766796, type: 'Airport'},
-      {name: 'Royal Yacht Club Of Victoria', nominatimId: 17535999, latitude: -37.8606788, longitude: 144.9072672, type: 'Marina'},
-      {name: 'Royal Yacht Club Of Tasmania', nominatimId: 170109287, latitude: -42.89777645, longitude: 147.332481183092, type: 'Marina'}
+      { name: 'Melbourne Airport', nominatimId: 146327231, latitude: -37.667111, longitude: 144.833480766796, type: 'Airport' },
+      { name: 'Royal Yacht Club Of Victoria', nominatimId: 17535999, latitude: -37.8606788, longitude: 144.9072672, type: 'Marina' },
+      { name: 'Royal Yacht Club Of Tasmania', nominatimId: 170109287, latitude: -42.89777645, longitude: 147.332481183092, type: 'Marina' },
+      { name: 'Sydney Airport', nominatimId: 125329460, latitude: -33.9498935, longitude: 151.18196819346, type: 'Airport' },
     ]
   );
   db.person.bulkCreate(
-    times(10, () => ({
-      Name: faker.name.findName()
-    }))
+    [
+      { name: 'Alvaro' }
+    ]
   );
-  // populate travel table with dummy data
+
   db.travel.bulkCreate(
-    times(10, () => ({
-      personId: random(1, 10),
-      departureLocation: random(1,3),
-      arrivalLocation: random(1,3)
-    }))
+    [
+      { oneway: true, departedAt: "2019-01-12", arrivedAt: "2019-01-22", transport: 'Boat', personId: 1, departureLocation: 3, arrivalLocation: 2 },
+      { oneway: false, departedAt: "2019-01-02", arrivedAt: "2019-01-04", transport: 'Plane', personId: 1, departureLocation: 1, arrivalLocation: 4 }
+    ]
   );
   /**
    * Swagger

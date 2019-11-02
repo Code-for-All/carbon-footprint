@@ -1,5 +1,26 @@
 export default (app, db) => {
   /**
+   * All the options needed to Produce a result that is not bloated
+   */
+  const travelOptions = {
+    attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'personId', 'departureLocation', 'arrivalLocation'] },
+    include: [
+      {
+        model: db.person,
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
+      },
+      {
+        model: db.location,
+        as: 'Arrival',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
+      }, {
+        model: db.location,
+        as: 'Departure',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
+      }
+    ]
+  }
+  /**
    * @swagger
    *
    * /travels:
@@ -10,19 +31,7 @@ export default (app, db) => {
    *       200:
    */
   app.get("/travels", (req, res) =>
-    db.travel.findAll({
-      attributes: { exclude: ['personId', 'departureLocation', 'arrivalLocation']},
-      include: [
-        db.person,
-        {
-          model: db.location,
-          as: 'Arrival'
-        }, {
-          model: db.location,
-          as: 'Departure'
-        }
-      ]
-    }).then((result) => res.json(result))
+    db.travel.findAll(travelOptions).then((result) => res.json(result))
   );
 
   /**
@@ -41,7 +50,7 @@ export default (app, db) => {
    *       200:
    */
   app.get("/travel/:id", (req, res) =>
-    db.travel.findByPk(req.params.id).then((result) => res.json(result))
+    db.travel.findByPk(req.params.id, travelOptions).then((result) => res.json(result))
   );
 
   /**
