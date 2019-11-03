@@ -2,43 +2,50 @@ export default (app, db) => {
   /**
    * All the options needed to Produce a result that is not bloated
    */
-  const travelOptions = {
-    attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'departureLocation', 'arrivalLocation'] },
+  const journeyOptions = {
+    attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'personId'] },
+    order: [[db.travel, 'sequence', 'asc']],
     include: [
       {
-        model: db.journey,
+        model: db.person,
         attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
       },
       {
-        model: db.location,
-        as: 'Departure',
-        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
-      },
-      {
-        model: db.location,
-        as: 'Arrival',
-        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
-      } 
+        model: db.travel,
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'journeyId', 'departureLocation', 'arrivalLocation'] },
+        include: [
+          {
+            model: db.location,
+            as: 'Departure',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
+          },
+          {
+            model: db.location,
+            as: 'Arrival',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] }
+          }
+        ]
+      }
     ]
   }
   /**
    * @swagger
    *
-   * /travels:
+   * /journeys:
    *   get:
    *     produces:
    *       - application/json
    *     responses:
    *       200:
    */
-  app.get("/travels", (req, res) =>
-    db.travel.findAll(travelOptions).then((result) => res.json(result))
+  app.get("/journeys", (req, res) =>
+    db.journey.findAll(journeyOptions).then((result) => res.json(result))
   );
 
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /journey/{id}:
    *   get:
    *     produces:
    *       - application/json
@@ -50,14 +57,14 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.get("/travel/:id", (req, res) =>
-    db.travel.findByPk(req.params.id, travelOptions).then((result) => res.json(result))
+  app.get("/journey/:id", (req, res) =>
+    db.journey.findByPk(req.params.id, journeyOptions).then((result) => res.json(result))
   );
 
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /journey/{id}:
    *   post:
    *     produces:
    *       - application/json
@@ -69,8 +76,8 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.post("/travel", (req, res) =>
-    db.travel.create({
+  app.post("/journey", (req, res) =>
+    db.journey.create({
       title: req.body.title,
       content: req.body.content
     }).then((result) => res.json(result))
@@ -79,7 +86,7 @@ export default (app, db) => {
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /journey/{id}:
    *   put:
    *     produces:
    *       - application/json
@@ -91,8 +98,8 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.put("/travel/:id", (req, res) =>
-    db.travel.update({
+  app.put("/journey/:id", (req, res) =>
+    db.journey.update({
       title: req.body.title,
       content: req.body.content
     },
@@ -106,7 +113,7 @@ export default (app, db) => {
   /**
    * @swagger
    *
-   * /travel/{id}:
+   * /journey/{id}:
    *   delete:
    *     produces:
    *       - application/json
@@ -118,8 +125,8 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.delete("/travel/:id", (req, res) =>
-    db.travel.destroy({
+  app.delete("/journey/:id", (req, res) =>
+    db.journey.destroy({
       where: {
         id: req.params.id
       }

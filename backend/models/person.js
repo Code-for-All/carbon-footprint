@@ -13,7 +13,7 @@ export default (sequelize, Sequelize) => {
   );
 
   Person.associate = (models) => {
-    Person.hasMany(models.travel);
+    Person.hasMany(models.journey);
   };
 
   return Person;
