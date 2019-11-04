@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "externalDocs": {
-        "description": "Raw swagger.json",
-        "url": "../swagger.json"
+        "description": "swagger.json",
+        "url": "https://footprint.codefor.nl/swagger.json"
     },
     "info": {
         "description": "API for calculating your Carbon footprint",
@@ -316,7 +316,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "petId",
+                        "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer",
@@ -377,8 +377,8 @@
                 "security": [
                     {
                         "footprint_auth": [
-                            "write:pets",
-                            "read:pets"
+                            "write:travel",
+                            "read:travel"
                         ]
                     }
                 ]
@@ -459,11 +459,13 @@
     "securityDefinitions": {
         "footprint_auth": {
             "type": "oauth2",
-            "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+            "authorizationUrl": "http://footprint.codefor.nl/oauth/dialog",
             "flow": "implicit",
             "scopes": {
-                "write:pets": "modify pets in your account",
-                "read:pets": "read your pets"
+                "write:travel": "modify travels in your account",
+                "read:travel": "read your travels",
+                "write:person": "modify your account or other persons you have access to",
+                "read:person": "read persons that you have access to"
             }
         },
         "api_key": {
