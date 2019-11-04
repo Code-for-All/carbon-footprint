@@ -6,7 +6,6 @@ import apiTravel from "./api/travel";
 import apiPerson from "./api/person";
 import apiLocation from "./api/location";
 
-const swaggerJSDoc = require('swagger-jsdoc');
 const app = express();
 app.use(bodyParser.json());
 
@@ -55,22 +54,9 @@ db.sequelize.sync().then(() => {
   /**
    * Swagger
    */
-  const definition = {
-    info: {
-      title: 'Footprint API',
-      version: '1.0.0',
-      description: 'API for calculating your Carbon footprint',
-    },
-    basePath: '/',
-  };
-  const options = {
-    definition,
-    apis: ['./api/*.js']
-  }
+  app.use('/swagger.json', express.static('./config/swagger.json'))
   const swaggerUi = require('swagger-ui-express');
-  const swaggerSpec = swaggerJSDoc(options);
-
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./config/swagger.json')));
 
   app.listen(8080, () => console.log("Api listening on port 8080"));
 });

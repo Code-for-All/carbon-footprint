@@ -1,4 +1,7 @@
 export default (app, db) => {
+  const personOptions = {
+    attributes: { exclude: ['createdAt', 'updatedAt'] }
+  }
   /**
    * @swagger
    *
@@ -15,7 +18,7 @@ export default (app, db) => {
    *       200:
    */
   app.get("/person/:id", (req, res) =>
-    db.person.findByPk(req.params.id).then((result) => res.json(result))
+    db.person.findByPk(req.params.id, personOptions).then((result) => res.json(result))
   );
 
     /**
@@ -29,6 +32,12 @@ export default (app, db) => {
    *       200:
    */
   app.get("/persons", (req, res) =>
-    db.person.findAll().then((result) => res.json(result))
+    db.person.findAll(personOptions).then((result) => res.json(result))
+  );
+
+  app.post("/person", (req, res) =>
+    db.person.create({
+      name: req.body.name
+    }).then((result) => res.json(result))
   );
 }
