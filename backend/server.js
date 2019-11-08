@@ -36,8 +36,8 @@ db.sequelize.sync().then(() => {
   );
   db.journey.bulkCreate(
     [
-      { personId: 1 },
-      { personId: 1 },
+      { personId: 1, description: "Sailing involved" },
+      { personId: 1, description: "Fly from here to there"},
       { personId: 2, description: "AI met Impact meeting" }
     ]
   );
