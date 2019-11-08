@@ -8,9 +8,9 @@ import { ApiModule, BASE_PATH } from '../api-module/index';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 // Material Design
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,7 @@ import { MatCardModule } from '@angular/material/card';
     HttpClientModule,
     ApiModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatCardModule
+    MaterialModule
   ],
   providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
   bootstrap: [AppComponent]
