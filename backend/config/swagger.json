@@ -646,7 +646,9 @@
                 "write:travel": "modify travels in your account",
                 "read:travel": "read your travels",
                 "write:person": "modify your account or other persons you have access to",
-                "read:person": "read persons that you have access to"
+                "read:person": "read persons that you have access to",
+                "write:journey": "modify journeys in your account",
+                "read:journey": "read your journeys"
             }
         },
         "api_key": {
@@ -734,7 +736,6 @@
                     "$ref": "#/definitions/Person"
                 },
                 "travels": {
-                    "nullable": true,
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Travel"

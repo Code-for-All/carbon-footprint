@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import bodyParser from "body-parser";
 import db from "./models";
 import apiJourney from "./api/journey";
@@ -7,6 +8,7 @@ import apiPerson from "./api/person";
 import apiLocation from "./api/location";
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 apiJourney(app, db);
