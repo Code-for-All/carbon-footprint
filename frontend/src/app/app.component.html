@@ -29,17 +29,21 @@
 </div>
 
 <div class="content" role="main">
-  <div *ngFor="let journey of journeys">
-      <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-
-    {{journey.person.name}} took a journey named: <em>{{journey.description}}</em>
-    <ul>
-        <li *ngFor="let travel of journey.travels">{{ travel.Departure.name }} ({{travel.Departure.type}}) to {{ travel.Arrival.name}} ({{travel.Arrival.type}}) by {{travel.transport}}</li>
-    </ul>
-    
+  
+  <div class="list" *ngFor="let journey of journeys">
+      <mat-card>
+          <mat-card-header>
+              <div mat-card-avatar class="avatar default">{{journey.person.name.charAt(0)}}</div>
+              <mat-card-title>{{journey.person.name}}</mat-card-title>
+              <mat-card-subtitle>{{journey.description}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <li *ngFor="let travel of journey.travels">{{ travel.Departure.name }} ({{travel.Departure.type}}) to {{ travel.Arrival.name}} ({{travel.Arrival.type}}) by {{travel.transport}}</li>
+                </ul>
+            </mat-card-content>
+      </mat-card>
   </div>
-  <hr>
-  <br>
 </div>
 <footer>
 </footer>
