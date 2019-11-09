@@ -2,7 +2,7 @@
     <div class="list" *ngFor="let journey of journeys">
         <mat-card>
             <mat-card-header>
-                <div mat-card-avatar class="avatar default">
+                <div mat-card-avatar class="avatar default" [style.background]="journey.person.background">
                     {{journey.person.name.charAt(0)}}</div>
                 <mat-card-title>{{journey.person.name}}</mat-card-title>
                 <mat-card-subtitle>{{journey.description}}</mat-card-subtitle>
