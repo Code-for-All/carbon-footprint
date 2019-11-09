@@ -4,9 +4,8 @@
 
     <span class="spacer"></span>
 
-    <button mat-button>About</button>
-    <button mat-button>Services</button>
-    <button mat-button>Contact</button>
+    <button *ngIf="!auth.loggedIn" (click)="auth.login()" mat-button>Log In</button>
+    <button (click)="auth.logout()" *ngIf="auth.loggedIn" mat-button>Log Out</button>
   </mat-toolbar-row>
 </mat-toolbar>
 

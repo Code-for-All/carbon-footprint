@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { JourneyService, Journey } from '../api-module/index';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from "@angular/platform-browser";
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class AppComponent {
   title = 'Carbon footprint';
-  journeys: Journey[];
-  constructor(journeyService: JourneyService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public auth: AuthService) {
     iconRegistry.addSvgIconSetInNamespace("myicons", sanitizer.bypassSecurityTrustResourceUrl('/assets/svg/icons.svg'));
-    journeyService.journeysGet().subscribe(c => {
-      this.journeys = c;
-    });
+  }
+  ngOnInit() {
+    this.auth.localAuthSetup();
+    this.auth.handleAuthCallback();
   }
 }

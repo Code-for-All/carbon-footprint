@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  API_BASE_PATH: 'http://localhost:8080'
+  API_BASE_PATH: 'http://localhost:8080',
+  auth: {
+    domain: "{yourdomain}.auth0.com",
+    client_id: "{YourClientID}",
+    redirect_uri: `${window.location.origin}`
+  }
 };
 
 /*
