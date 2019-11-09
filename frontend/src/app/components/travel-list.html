@@ -1,0 +1,7 @@
+<div class="flex-h" *ngFor="let travel of travels">
+    <div>
+        <mat-icon [svgIcon]="'myicons:' + travel.transport.toLowerCase()"></mat-icon>
+    </div>
+    <div>{{ travel.Departure.name }} ({{travel.Departure.type}}) to {{ travel.Arrival.name}}
+        ({{travel.Arrival.type}}) by {{travel.transport}}</div>
+</div>

@@ -11,17 +11,10 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class AppComponent {
   title = 'Carbon footprint';
   journeys: Journey[];
-  constructor(journeyService: JourneyService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+  constructor(journeyService: JourneyService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconSetInNamespace("myicons", sanitizer.bypassSecurityTrustResourceUrl('/assets/svg/icons.svg'));
     journeyService.journeysGet().subscribe(c => {
       this.journeys = c;
     });
-  }
-
-  randomColor (): string {
-    return "rgb(" 
-      + Math.floor(Math.random() * 255) + "," 
-      + Math.floor(Math.random() * 255) + ","  
-      + Math.floor(Math.random() * 255) + ")";  
   }
 }

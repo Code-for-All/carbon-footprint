@@ -8,13 +8,16 @@ import { ApiModule, BASE_PATH } from '../api-module/index';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { TravelList } from './components/travel-list';
 // Material Design
 import { MaterialModule } from './material.module';
+import { JourneyList } from './components/journey-list';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TravelList,
+    JourneyList
   ],
   imports: [
     BrowserModule,
