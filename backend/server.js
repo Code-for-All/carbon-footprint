@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "express-jwt";
 import jwksRsa from "jwks-rsa";
+
 import cors from "cors";
 import bodyParser from "body-parser";
 
@@ -11,6 +12,7 @@ import apiPerson from "./api/person";
 import apiLocation from "./api/location";
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/config/config.json')[env];
+
 
 const app = express();
 app.use(cors());
@@ -30,6 +32,8 @@ const checkJwt = jwt({
     issuer: `https://${config.auth.domain}/`,
     algorithm: ["RS256"]
 });
+
+
 
 
 app.get('/authorized', function (req, res) {

@@ -5,6 +5,7 @@ export default (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true
     },
+    oauthid: Sequelize.STRING,
     name: Sequelize.STRING
   },
     {
