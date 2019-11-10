@@ -1,4 +1,4 @@
-export default (app, db) => {
+export default (app, authCheck, db) => {
   /**
    * All the options needed to Produce a result that is not bloated
    */

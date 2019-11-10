@@ -1,14 +1,26 @@
 {
   "development": {
     "database": "./data/database_development.sqlite",
-    "dialect": "sqlite"
+    "dialect": "sqlite",
+    "auth": {
+      "audience": "{YOUR-API-AUDIENCE-ATTRIBUTE}",
+      "domain": "{YOUR-AUTH0-DOMAIN}"
+    }
   },
   "test": {
     "database": "./data/database_test.sqlite",
-    "dialect": "sqlite"
+    "dialect": "sqlite",
+    "auth": {
+      "audience": "{YOUR-API-AUDIENCE-ATTRIBUTE}",
+      "domain": "{YOUR-AUTH0-DOMAIN}"
+    }
   },
   "production": {
     "database": "./data/database_production.sqlite",
-    "dialect": "sqlite"
+    "dialect": "sqlite",
+    "auth": {
+      "audience": "{YOUR-API-AUDIENCE-ATTRIBUTE}",
+      "domain": "{YOUR-AUTH0-DOMAIN}"
+    }
   }
 }

@@ -1,4 +1,4 @@
-export default (app, db) => {
+export default (app, authCheck, db) => {
   /**
    * @swagger
    *

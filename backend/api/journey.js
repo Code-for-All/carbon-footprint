@@ -1,4 +1,4 @@
-export default (app, db) => {
+export default (app, authCheck, db) => {
   /**
    * All the options needed to Produce a result that is not bloated
    */
@@ -38,7 +38,7 @@ export default (app, db) => {
    *     responses:
    *       200:
    */
-  app.get("/journeys", (req, res) =>
+  app.get("/journeys", authCheck, (req, res) =>
     db.journey.findAll(journeyOptions).then((result) => res.json(result))
   );
 
