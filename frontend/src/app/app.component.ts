@@ -10,6 +10,8 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   title = 'Carbon footprint';
+  events: string[] = [];
+  opened: boolean;
   constructor( iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public auth: AuthService) {
     iconRegistry.addSvgIconSetInNamespace("myicons", sanitizer.bypassSecurityTrustResourceUrl('/assets/svg/icons.svg'));
   }

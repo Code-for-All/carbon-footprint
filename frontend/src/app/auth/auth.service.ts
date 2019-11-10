@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 import { from, of, Observable, BehaviorSubject, combineLatest, throwError } from 'rxjs';
 import { tap, catchError, concatMap, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -10,8 +10,14 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  // Create an observable of Auth0 instance of client
   auth0Client$ = (from(
-    createAuth0Client(environment.auth)
+    createAuth0Client({
+      domain: environment.auth.domain,
+      client_id: environment.auth.client_id,
+      redirect_uri: `${window.location.origin}`,
+      audience: environment.auth.audience
+    })
   ) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
     catchError(err => throwError(err))
@@ -37,10 +43,18 @@ export class AuthService {
 
   // When calling, options can be passed if desired
   // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#getuser
-  getUser$(options?: GetUserOptions): Observable<any> {
+  getUser$(options?): Observable<any> {
     return this.auth0Client$.pipe(
       concatMap((client: Auth0Client) => from(client.getUser(options))),
       tap(user => this.userProfileSubject$.next(user))
+    );
+  }
+
+  // When calling, options can be passed if desired
+  // https://auth0.github.io/auth0-spa-js/classes/auth0client.html#gettokensilently
+  getTokenSilently$(options?): Observable<string> {
+    return this.auth0Client$.pipe(
+      concatMap((client: Auth0Client) => from(client.getTokenSilently(options)))
     );
   }
 
@@ -107,9 +121,10 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: "K9WVS2dSA7K8VpGV4BfY0mOS3xDSvejR",
-        returnTo: `${window.location.origin}`
+        client_id: environment.auth.client_id,
+        returnTo: window.location.origin
       });
     });
   }
+
 }

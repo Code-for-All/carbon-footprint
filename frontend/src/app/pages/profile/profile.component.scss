@@ -1,0 +1,11 @@
+// Import theming functions
+@import '../../../styles.scss';
+@include mat-core();
+
+.avatar-header-image {
+    background-size: cover;
+}
+
+.profile-card {
+    box-shadow: none !important;
+}

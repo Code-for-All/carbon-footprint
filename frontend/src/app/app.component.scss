@@ -1,14 +1,19 @@
-:host {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+.main-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-svg#clouds {
-  position: fixed;
-  bottom: -160px;
-  left: -230px;
-  z-index: -10;
-  width: 1920px;
+p {
+  padding: 1em;
+  background-color: #fff;
+}
+
+blockquote {
+  font-style: italic;
+}
+.spacer {
+  flex: 1 1 auto;
 }

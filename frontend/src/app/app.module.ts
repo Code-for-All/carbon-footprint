@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './auth/auth.service';
 
 // Components
+import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { TravelList } from './components/travel-list';
 
 // Material Design
@@ -21,6 +23,8 @@ import { JourneyList } from './components/journey-list';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    ProfileComponent,
     TravelList,
     JourneyList
   ],
