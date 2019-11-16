@@ -21,16 +21,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: `https://${config.auth.domain}/.well-known/jwks.json`
-    }),
-  
-    audience: config.auth.audience,
-    issuer: `https://${config.auth.domain}/`,
-    algorithm: ["RS256"]
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${config.auth.domain}/.well-known/jwks.json`
+  }),
+
+  audience: config.auth.audience,
+  issuer: `https://${config.auth.domain}/`,
+  algorithm: ["RS256"]
 });
 
 
@@ -67,7 +67,7 @@ db.sequelize.sync().then(() => {
   db.journey.bulkCreate(
     [
       { personId: 1, description: "Sailing involved" },
-      { personId: 1, description: "Fly from here to there"},
+      { personId: 1, description: "Fly from here to there" },
       { personId: 2, description: "AI met Impact meeting" }
     ]
   );
@@ -75,7 +75,7 @@ db.sequelize.sync().then(() => {
   db.travel.bulkCreate(
     [
       { oneway: true, departedAt: "2019-01-12", arrivedAt: "2019-01-22", transport: 'Boat', journeyId: 1, departureLocation: 3, arrivalLocation: 2 },
-      { oneway: false, departedAt: "2019-01-02", arrivedAt: "2019-01-04", transport: 'Plane',journeyId: 2, departureLocation: 1, arrivalLocation: 4 },
+      { oneway: false, departedAt: "2019-01-02", arrivedAt: "2019-01-04", transport: 'Plane', journeyId: 2, departureLocation: 1, arrivalLocation: 4 },
       { oneway: true, departedAt: "2019-10-31", arrivedAt: "2019-10-31", sequence: 0, transport: 'Car', journeyId: 3, departureLocation: 8, arrivalLocation: 5 },
       { oneway: true, departedAt: "2019-10-31", arrivedAt: "2019-10-31", sequence: 1, transport: 'Train', journeyId: 3, departureLocation: 5, arrivalLocation: 7 },
       { oneway: false, departedAt: "2019-10-31", arrivedAt: "2019-10-31", sequence: 2, transport: 'Foot', journeyId: 3, departureLocation: 7, arrivalLocation: 6 },
@@ -83,12 +83,14 @@ db.sequelize.sync().then(() => {
       { oneway: true, departedAt: "2019-10-31", arrivedAt: "2019-10-31", sequence: 4, transport: 'Car', journeyId: 3, departureLocation: 5, arrivalLocation: 8 }
     ]
   );
-  /**
+
+});
+/**
    * Swagger
    */
-  app.use('/swagger.json', express.static('./config/swagger.json'))
-  const swaggerUi = require('swagger-ui-express');
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./config/swagger.json')));
+app.use('/swagger.json', express.static('./config/swagger.json'))
+const swaggerUi = require('swagger-ui-express');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./config/swagger.json')));
 
-  app.listen(8080, () => console.log("Api listening on port 8080"));
-});
+var server = app.listen(8080, () => console.log("Api listening on port 8080"));
+module.exports = server;

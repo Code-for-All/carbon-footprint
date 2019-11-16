@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon --exec babel-node server.js",
+    "test": "mocha --require babel-core/register *.spec.js",
     "sequelize-skeleton": "npx sequelize init:models; npx sequelize init:config"
   },
   "author": "",
@@ -26,7 +27,9 @@
     "faker": "^4.1.0",
     "lodash.random": "^3.2.0",
     "lodash.times": "^4.3.2",
+    "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "supertest": "^4.0.2"
   }
 }
