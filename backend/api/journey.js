@@ -47,16 +47,7 @@ export default (app, authCheck, db) => {
       }
     ]
   }
-  /**
-   * @swagger
-   *
-   * /journeys:
-   *   get:
-   *     produces:
-   *       - application/json
-   *     responses:
-   *       200:
-   */
+
   app.get("/journeys", authCheck, checkUser, (req, res) => {
     if (req.user.dbid) {
       journeyOptions.where = { personId: req.user.dbid };
@@ -66,21 +57,6 @@ export default (app, authCheck, db) => {
     }
   });
 
-  /**
-   * @swagger
-   *
-   * /journey/{id}:
-   *   get:
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         type: integer
-   *     responses:
-   *       200:
-   */
   app.get("/journey/:id", authCheck, checkUser, (req, res) => {
     if (req.user.dbid) {
       journeyOptions.where = { personId: req.user.dbid };
@@ -90,21 +66,6 @@ export default (app, authCheck, db) => {
     }
   });
 
-  /**
-   * @swagger
-   *
-   * /journey/{id}:
-   *   post:
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         type: integer
-   *     responses:
-   *       200:
-   */
   app.post("/journey", authCheck, (req, res) =>
     db.journey.create({
       title: req.body.title,
@@ -112,21 +73,6 @@ export default (app, authCheck, db) => {
     }).then((result) => res.json(result))
   );
 
-  /**
-   * @swagger
-   *
-   * /journey/{id}:
-   *   put:
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         type: integer
-   *     responses:
-   *       200:
-   */
   app.put("/journey/:id", authCheck, (req, res) =>
     db.journey.update({
       title: req.body.title,
@@ -139,21 +85,6 @@ export default (app, authCheck, db) => {
       }).then((result) => res.json(result))
   );
 
-  /**
-   * @swagger
-   *
-   * /journey/{id}:
-   *   delete:
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         type: integer
-   *     responses:
-   *       200:
-   */
   app.delete("/journey/:id", authCheck, (req, res) =>
     db.journey.destroy({
       where: {
