@@ -1,5 +1,4 @@
-process.env.NODE_ENV = 'test';
-import db from "./models";
+import db from "../models";
 
 describe('testing models', function () {
   before(function (done) {

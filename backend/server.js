@@ -45,16 +45,14 @@ apiTravel(app, checkJwt, db);
 apiPerson(app, checkJwt, db);
 apiLocation(app, checkJwt, db);
 
-//db.sequelize.sync().then(() => {
-  
-
-//});
 /**
-   * Swagger
-   */
+ * Swagger
+ */
 app.use('/swagger.json', express.static('./config/swagger.json'))
 const swaggerUi = require('swagger-ui-express');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(require('./config/swagger.json')));
 
-var server = app.listen(8080, () => console.log("Api listening on port 8080"));
+var server = app.listen(8080, () => {
+  if (env === 'development') console.log("Api listening on port 8080")
+});
 module.exports = server;

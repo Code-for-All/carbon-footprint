@@ -1,10 +1,9 @@
-process.env.NODE_ENV = 'test';
 var request = require('supertest');
 
-describe('loading express', function () {
+describe('testing api', function () {
     var server;
     beforeEach(function () {
-        server = require('./server');
+        server = require('../server');
     });
     afterEach(function () {
         server.close();

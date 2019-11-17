@@ -21,7 +21,6 @@ if (config.use_env_variable) {
   } else if (env === 'development') {
     sequelize = new Sequelize(config.database, config.username, config.password, config);
   }
-
 }
 
 fs
