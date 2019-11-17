@@ -39,6 +39,16 @@ describe('testing models', function () {
     });
   });
 
+  it('should create trip', function (done) {
+
+    db.trip.create({ 
+
+    }).then(function (trip) {
+      // do some tests on article here
+      done();
+    });
+  });
+
   it('should create journeys', function (done) {
     db.journey.bulkCreate(
       [
