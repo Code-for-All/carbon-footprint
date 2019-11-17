@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon --exec babel-node server.js",
-    "test": "mocha --require babel-core/register *.spec.js",
+    "test": "NODE_ENV=test mocha --require babel-core/register ./*.spec.js",
     "sequelize-skeleton": "npx sequelize init:models; npx sequelize init:config"
   },
   "author": "",
