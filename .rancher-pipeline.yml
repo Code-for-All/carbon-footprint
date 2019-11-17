@@ -1,0 +1,8 @@
+stages:
+- name: backend-test
+  steps:
+  - runScriptConfig:
+      image: node:latest
+      shellScript: npm test
+timeout: 60
+notification: {}
