@@ -3,6 +3,6 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: cd backend && npm i && npm test
+      shellScript: 'cd backend && ls && npm i && pwd && npm test '
 timeout: 60
 notification: {}
